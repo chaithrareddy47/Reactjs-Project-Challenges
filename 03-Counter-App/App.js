@@ -1,37 +1,42 @@
-import React, { useState } from 'react';
+
+  import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { useState } from 'react';
 
-const App = () =>{
-  return (
-		<div>
-			<h1>Counter App</h1>
-			<Counter />
-		</div>
-	);
-}
-
 const Counter = () => {
-  const [count, setCount] = useState(0);
-  
-function handleClick(){
-  setCount(count +1);
-}
-  
+	const [count, setCount] = useState(0);
 	return (
 		<div className='container'>
-				<h2>{count}</h2>
-			<div className='btn'>
-				<button className='counter-btn' onClick={handleClick}>+</button>
-				<button className='counter-btn' onClick={() =>{
-          if(count > 0){
-            setCount(count - 1)
-          }
-        }}>-</button>
+			<div className='counter'>
+				<h1>{count}</h1>
+			</div>
+			<div className='btns'>
+				<button
+					onClick={() => {
+						setCount((count) => count + 1);
+					}}>
+					+
+				</button>
+				<button
+					onClick={() => {
+						if (count > 0) {
+							setCount((count) => count - 1);
+						}
+					}}>
+					-
+				</button>
 			</div>
 		</div>
 	);
 };
 
+const App = () => {
+	return (
+		<div>
+			<Counter />
+		</div>
+	);
+};
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App/>)
+root.render(<App />);
